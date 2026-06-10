@@ -20,12 +20,39 @@ TIC20       |       20%
 DARIO       |       50%
 */
 
-// COMPLETAR: Implementar la función calcularTotal que reciba el id del artista, la cantidad de entradas y un código de descuento (opcional) y devuelva el precio total a pagar en patacones.
+
+const preciosArtistas: { [key: string]: number } = {
+sabrina: 1000,
+  kgatlw: 700,
+  lali: 500,
+  magdalena: 600,
+  viagra: 400,
+  dillom: 350,
+  marilina: 200,
+  mugre: 150,
+};
+
+const descuentos: { [key: string]: number } = {
+  TIC10: 0.10,
+  TIC20: 0.20,
+  DARIO: 0.50,
+};
+
+const calcularTotal = (id: string, cantidad: number, codigoDescuento?: string): number => {
+const precioBase = preciosArtistas[id] || 0; 
+let total = precioBase * cantidad;
+if (codigoDescuento && descuentos[codigoDescuento]) {const descuento = descuentos[codigoDescuento];
+total -= total * descuento;
+}
+
+return total;
+};
+
 
 cuandoPasa('seleccionarArtista', ({ id, cantidad, codigoDescuento }) => {
-  let cantidadNum: number = Number(cantidad);
-  let precio: number = calcularTotal(id, cantidadNum, codigoDescuento);
-  enviarAlFrontend('mostrarPrecio', precio);
+const cantidadNum: number = Number(cantidad);
+const precio: number = calcularTotal(id, cantidadNum, codigoDescuento);
+enviarAlFrontend('mostrarPrecio', precio);
 });
 
 iniciar();
