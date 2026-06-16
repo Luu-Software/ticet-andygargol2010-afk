@@ -67,7 +67,7 @@ function calcularTotal(id: string, cantidad: number, codigoDescuento?: string): 
 
 cuandoPasa('seleccionarArtista', ({ id, cantidad, codigoDescuento }) => {
   let cantidadNum: number = Number(cantidad);
-  let precio: number =calcularTotal(id, cantidadNum, codigoDescuento);
+  let precio: number = calcularTotal(id, cantidadNum, codigoDescuento);
   enviarAlFrontend('mostrarPrecio', precio);
 });
 
